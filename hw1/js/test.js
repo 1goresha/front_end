@@ -8,7 +8,7 @@ const vehicle = {
     }
 };
 
-const sportCar = Object.prototype(vehicle);
+const sportCar = Object.create(vehicle);
 
 sportCar.doors = 2;
 sportCar.color = "red";
