@@ -1,23 +1,20 @@
 "use strict"; 
 
-let numberOfFilms; 
-let q1, q2; 
-
 let personalMovieDB = { //так выглядит объект в js 
-    count: numberOfFilms, 
+    count: 0, 
     movies: {}, 
     actors: {}, 
     genres: [], 
     privat: false, 
-    
     start: function() { 
-        numberOfFilms = +prompt("сколько фильмов вы уже посмотрели?", ""); 
-        while (numberOfFilms.length == 0 || numberOfFilms == null || isNaN(numberOfFilms)) { 
-            numberOfFilms = +prompt("сколько фильмов вы уже посмотрели?", ""); 
+        this.count = +prompt("сколько фильмов вы уже посмотрели?", ""); 
+        while (this.count.length == 0 || this.count == null || isNaN(this.count)) { 
+            this.count = +prompt("сколько фильмов вы уже посмотрели?", ""); 
         } 
     },
-
     rememberMyFilms: function() { 
+        let q1, q2; 
+
         for (let i = 1; i <= 2; i++) { 
             do { 
                 q1 = prompt(`фильм под номером ${i}`, ""); 
@@ -28,13 +25,14 @@ let personalMovieDB = { //так выглядит объект в js
             personalMovieDB.movies[q1] = q2; 
         } 
     },
-
-    showMyDb: function(privat) { 
-        if (!privat) { 
+    showMyDb: function() { 
+        if (!this.privat) { 
             return personalMovieDB; 
         } 
     },
-
+    toggleVisibleMyDB: function(){
+        personalMovieDB.privat = personalMovieDB.privat == false? true: false;
+    },
     writeYourGenres: function() { 
         let answer; 
         for (let i = 1; i < 4; i++) { 
@@ -48,8 +46,11 @@ let personalMovieDB = { //так выглядит объект в js
                 // console.log(i); 
             } 
         } 
-    },
 
+        this.genres.forEach(function(value, i, genres){
+            console.log(`Любимый жанр # ${i+1} - это ${value}`);
+        });
+    },
     determineLevelOfWatchingMovies: function() { 
         if (personalMovieDB.count < 10) { 
             console.log("просмотренно довольно мало фильмов"); 
@@ -66,4 +67,8 @@ let personalMovieDB = { //так выглядит объект в js
         } 
     } 
 }; 
- 
+
+// personalMovieDB.start();
+// personalMovieDB.toggleVisibleMyDB();
+// console.log(personalMovieDB.showMyDb());
+// personalMovieDB.writeYourGenres();
