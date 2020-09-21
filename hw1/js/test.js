@@ -91,3 +91,5 @@ function logArgs(a, b, c, d){
 const args = [1, 2, 1024, 768];
 
 logArgs(...args);
+
+console.log(typeof(1 && 2));
